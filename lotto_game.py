@@ -29,15 +29,16 @@ def main():
             lotto_ticket = ticket()
             bill_type = lotto_ticket.bill_type_ob()
             bill_num = lotto_ticket.bill_num_ob()
-            check_num_bill = check_num_to_bill.check_num_to_bill_m(bill_num[0],bill_type)
+            check_num_bill = lotto_ticket.check_num_to_bill_ob()
 
-            if check_num_bill == True:
+            if check_num_bill:
                 pass
             else:
                 bill_num = lotto_ticket.bill_num_ob()
 
             bill_city = lotto_ticket.bill_city()
-            print(bill_type, bill_num[1], bill_city)
+
+            #print(bill_type, bill_num[1], bill_city)
             lotto_printer.printer(bill_type, bill_city, bill_num[1])
             counter = counter +1
 

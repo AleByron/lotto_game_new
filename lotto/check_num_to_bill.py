@@ -5,7 +5,7 @@ class check_num_to_bill():
 
     @staticmethod
     def check_num_to_bill_m(inp_num_bill, inp_type_bill):
-        print(inp_num_bill)
+        #print(inp_num_bill)
         if inp_type_bill == 'cinquina' and int(inp_num_bill) < 5:
             print('You have to ask at least for 5 numbers in order to play for a cinquina')
             result = False

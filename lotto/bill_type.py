@@ -10,7 +10,7 @@ class bill_type():
             if inp_type_bill not in checkType:
                 inp_type_bill = input('Your bill is invalid, retry: ')
                 bill_type.bill_type_m(inp_type_bill)
-            print(inp_type_bill)
+            #print(inp_type_bill)
             return inp_type_bill
         except EOFError:
             bill_type.bill_type_m(inp_type_bill)
