@@ -1,15 +1,19 @@
 import argparse
 from lotto.ticket import ticket
-from lotto.check_num_to_bill import check_num_to_bill
 from lotto.lotto_printer import lotto_printer
+from lotto.extraction import extraction
 
 def main():
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument("-n", "-number", type=int, help="Number of tickets to generate", choices=[0, 1, 2, 3, 4, 5])
     args = parser.parse_args()
     n_ticket = args.n
-    while True:
 
+    extr = extraction()
+    extracted_numbers = extr.numbers()
+    #print(extracted_numbers)
+
+    while True:
 
         if n_ticket == None:
             print('You should enter at least a single  bill for a ticket')
@@ -38,9 +42,13 @@ def main():
 
             bill_city = lotto_ticket.bill_city()
 
-            #print(bill_type, bill_num[1], bill_city)
-            lotto_printer.printer(bill_type, bill_city, bill_num[1])
             counter = counter +1
+            check_winner = extr.checker(bill_city,bill_num[1],bill_type)
+            if check_winner != {}:
+                lotto_printer.printer(bill_type, bill_city, bill_num[1])
+                lotto_printer.winner_printer(check_winner)
+
+        lotto_printer.extraction_printer(extracted_numbers)
 
         while True:
             play_again = input('Do you want to play again?(y/n): ')

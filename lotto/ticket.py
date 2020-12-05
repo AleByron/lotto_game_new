@@ -1,15 +1,16 @@
 from lotto.bill_type import bill_type
 from lotto.bill_num import bill_num
-from lotto.bill_num_played import bill_num_played
 from lotto.bill_city import bill_city
 from lotto.check_num_to_bill import check_num_to_bill
 
 class ticket():
-    def __init__(self, inp_num_bill="", inp_city_type="", num_played="", inp_bill_type=""):
+    def __init__(self, inp_num_bill="", inp_city_type="", num_played="", inp_bill_type="", extracted_numbers=""):
         self.inp_num_bill = inp_num_bill
         self.inp_city_type = inp_city_type
         self.num_played = num_played
         self.inp_bill_type = inp_bill_type
+        self.extracted_numbers = extracted_numbers
+
     def bill_type_ob(self):
         inp_bill_type = input("What kind of bill you want to play?\n Ambata, ambo, terno, quaterna, cinquina: ")
         bt = bill_type(inp_bill_type)
@@ -23,7 +24,7 @@ class ticket():
         bn = bill_num(inp_bill_num)
         number_of_numbers = bn.bill_num_m(inp_bill_num)
         self.inp_num_bill = number_of_numbers
-        bnp = bill_num_played(number_of_numbers)
+        bnp = bill_num(number_of_numbers)
         result = bnp.bill_num_played_m(number_of_numbers)
 
         return number_of_numbers, result
@@ -39,9 +40,4 @@ class ticket():
         bill = check_num_to_bill(self.inp_num_bill, self.inp_bill_type)
         result = bill.check_num_to_bill_m(self.inp_num_bill, self.inp_bill_type)
         return result
-
-
-
-
-
 
