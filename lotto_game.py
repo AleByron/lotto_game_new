@@ -2,6 +2,7 @@ import argparse
 from lotto.ticket import ticket
 from lotto.lotto_printer import lotto_printer
 from lotto.extraction import extraction
+from lotto.bill_value import bill_value
 
 def main():
     parser = argparse.ArgumentParser(description='Process some integers.')
@@ -41,11 +42,14 @@ def main():
                 bill_num = lotto_ticket.bill_num_ob()
 
             bill_city = lotto_ticket.bill_city()
+            money_amount = lotto_ticket.bill_money()
 
             counter = counter +1
             check_winner = extr.checker(bill_city,bill_num[1],bill_type)
+
             if check_winner != {}:
-                lotto_printer.printer(bill_type, bill_city, bill_num[1])
+                won_money_amount = bill_value(check_winner, bill_type, bill_num[0], money_amount, bill_city).bill_value_met()
+                lotto_printer.printer(bill_type, bill_city, bill_num[1],money_amount, won_money_amount)
                 lotto_printer.winner_printer(check_winner)
 
         lotto_printer.extraction_printer(extracted_numbers)

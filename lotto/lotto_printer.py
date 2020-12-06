@@ -1,14 +1,15 @@
 class lotto_printer():
 
-    def __init__(self, bill_type="", city="", played_numbers="", extracted_numbers="", winners = ""):
+    def __init__(self, bill_type="", city="", played_numbers="", extracted_numbers="", winners = "", bill_money=""):
         self.city = city
         self.bill_type = bill_type
         self.played_numbers = played_numbers
         self.extracted_numbers = extracted_numbers
         self.winners = winners
+        self.bill_money = bill_money
 
     @staticmethod
-    def printer(bill_type, city, played_numbers ):
+    def printer(bill_type, city, played_numbers, bill_money, won_money ):
         length = 40
         print("\n")
         print("+" + '-' * length + "+")
@@ -26,6 +27,12 @@ class lotto_printer():
         print("|" + " " + "PLAYED NUMBERS: " + " "*23 + "|")
         print("|" + " " + str(played_numbers)[1:-1] + (39 - len(str(played_numbers)[1:-1]))*" " +"|" )
         print('|' + ' ' * length + "|")
+        print("|" + " " + "MONEY BET: " + " " * 28 + "|")
+        print("|" + " " + str(bill_money) + (39 - len(str(bill_money))) * " " + "|")
+        print('|' + ' ' * length + "|")
+        print("|" + " " + "MONEY WON: " + " " * 28 + "|")
+        print("|" + " " + "GROSS AMOUNT: " + str(won_money[0])  + (25 - len(str(won_money[0]))) * " " + "|")
+        print("|" + " " + "NET AMOUNT: " + str(won_money[1]) + (27 - len(str(won_money[1]))) * " " + "|")
         print("+" + '-' * length + "+")
         print("\n")
 
@@ -41,7 +48,8 @@ class lotto_printer():
 
     @staticmethod
     def winner_printer(winners):
+        print("You won:")
         for win in winners:
-            print("You won {bill_n} {bill_t} on {bill_c} ".format(bill_n = winners[win][1], bill_t=winners[win][0], bill_c=win))
+            print("{bill_n} {bill_t} on {bill_c} ".format(bill_n = winners[win][1], bill_t=winners[win][0], bill_c=win))
 
 

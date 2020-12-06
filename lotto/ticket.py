@@ -4,12 +4,15 @@ from lotto.bill_city import bill_city
 from lotto.check_num_to_bill import check_num_to_bill
 
 class ticket():
-    def __init__(self, inp_num_bill="", inp_city_type="", num_played="", inp_bill_type="", extracted_numbers=""):
+    def __init__(self, inp_num_bill="", inp_city_type="", num_played="", inp_bill_type="", extracted_numbers="", bet_money=""):
         self.inp_num_bill = inp_num_bill
         self.inp_city_type = inp_city_type
         self.num_played = num_played
         self.inp_bill_type = inp_bill_type
         self.extracted_numbers = extracted_numbers
+        self.bet_money = bet_money
+
+
 
     def bill_type_ob(self):
         inp_bill_type = input("What kind of bill you want to play?\n Ambata, ambo, terno, quaterna, cinquina: ")
@@ -34,10 +37,27 @@ class ticket():
             "Select the city you want to play: \n Bari, Cagliari, Firenze, Genova, Milano, Napoli, Palermo, Roma, Torino, Venezia or all: ")
         bc = bill_city(inp_bill_city)
         result = bc.bill_city_m(inp_bill_city)
+        self.inp_city_type = result
         return result
 
     def check_num_to_bill_ob(self):
         bill = check_num_to_bill(self.inp_num_bill, self.inp_bill_type)
         result = bill.check_num_to_bill_m(self.inp_num_bill, self.inp_bill_type)
         return result
+
+    def bill_money(self):
+        try:
+            money_amount = float(input('How mutch you want to bet?: '))
+            if money_amount <= 0:
+                money_amount = ticket.bill_money(self)
+        except ValueError:
+            money_amount = ticket.bill_money(self)
+
+        self.bet_money = money_amount
+
+        return money_amount
+
+
+
+
 
