@@ -1,1 +1,1 @@
-Italian lotto game simulator
+Italian lotto game simulator + tester
