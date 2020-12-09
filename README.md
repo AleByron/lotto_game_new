@@ -1,1 +1,1 @@
-LP3 + tester
+Italian lotto game simulator
